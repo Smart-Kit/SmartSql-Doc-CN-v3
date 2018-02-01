@@ -22,7 +22,7 @@ SmartSql 提供了 ZooKeeper配置插件,通过NuGet获得:
 ```
 Install-Package SmartSql.ZooKeeperConfig
 ```
-- 另外作者还开源了ZooKeeper节点管理工具:ZooKeeper-Admin,可直接通过该管理工具直接配置. 关于[ZooKeeper-Admin](https://github.com/Ahoo-Wang/ZooKeeper-Admin):
+- 另外作者还开源了ZooKeeper节点管理工具:[ZooKeeper-Admin](https://github.com/Ahoo-Wang/ZooKeeper-Admin),可直接通过该管理工具直接配置. 关于[ZooKeeper-Admin](https://github.com/Ahoo-Wang/ZooKeeper-Admin):
 - 使用 Asp.net Core 编写
 - Docker安装:
 ```
