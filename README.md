@@ -40,6 +40,65 @@
   - 7.3 SmartSql.ZooKeeperConfig √ (ZooKeeper 分布式配置文件加载器)
 ----
 
-## 3. 技术交流
+## 3. 性能 
+### 查询次数:1000000 
+
+| ORM | Total\(ms\) |
+| --- | :---: |
+| SmartSql | 63568 |
+| Dapper | 60023 |
+| MyBaits | 83566 |
+
+### 查询次数:100000
+
+| ORM | Total\(ms\) |
+| --- | :---: |
+| SmartSql | 6075 |
+| Dapper | 5931 |
+| MyBaits | 6574 |
+----
+
+## 4. 安装 (NuGet)
+```
+Install-Package SmartSql
+```
+## 5. 常规代码
+### 查询
+``` CSharp
+            ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
+            SqlMapper.Query<T_Test>(new RequestContext
+            {
+                Scope = "T_Test",
+                SqlId = "GetList",
+                Request = new { Ids = new long[] { 1, 2, 3, 4 } }
+            });
+```
+### 事务 
+``` CSharp
+            try
+            {
+                ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
+                SqlMapper.BeginTransaction();
+                SqlMapper.Execute(new RequestContext
+                {
+                    Scope = "T_Test",
+                    SqlId = "Add",
+                    Request = new T_Test { }
+                });
+                SqlMapper.Execute(new RequestContext
+                {
+                    Scope = "T_Test",
+                    SqlId = "Update",
+                    Request = new T_Test { }
+                });
+                SqlMapper.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                SqlMapper.RollbackTransaction();
+                throw ex;
+            }
+```
+## 6. 技术交流
 
 点击链接加入QQ群【SmartSql 官方交流群】：[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
