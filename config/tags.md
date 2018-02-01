@@ -25,5 +25,15 @@
 | Defalut        |          | 
 | Where        |          | 
 
-## 缓存标签
+### IsNotEmpty
+| 属性       |    说明   | 
+| :--------- | --------:| 
+| Prepend    |    查询前缀      |  
+| Property   |  参数键名        |  
 
+#### Demo
+``` xml
+<IsNotEmpty Prepend="And" Property="OrderStatus">
+    T.OrderStatus=@OrderStatus
+</IsNotEmpty>
+```
