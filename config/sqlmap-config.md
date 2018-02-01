@@ -1,4 +1,4 @@
-# SmartSqlMapConfig 标签
+# SmartSqlMapConfig
 
 ## Demo
 

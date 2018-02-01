@@ -1,4 +1,4 @@
-# SmartSqlMap 标签
+# SmartSqlMap
 
 | 属性       |    说明   |
 | :--------- | --------:|
