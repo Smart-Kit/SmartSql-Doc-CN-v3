@@ -1,4 +1,4 @@
-# Redis缓存
+# Redis 分布式缓存
 
 ## Cache 配置
 ``` xml
