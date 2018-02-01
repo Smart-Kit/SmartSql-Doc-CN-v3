@@ -40,6 +40,6 @@
   - 7.3 SmartSql.ZooKeeperConfig √ (ZooKeeper 分布式配置文件加载器)
 ----
 
-3. 技术交流
+## 3. 技术交流
 
 点击链接加入QQ群【SmartSql 官方交流群】：[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
