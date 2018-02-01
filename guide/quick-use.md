@@ -1,5 +1,7 @@
 # 快速使用
-## SmartSqlMapConfig
+## 模板文件
+
+### SmartSqlMapConfig
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
 <SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
@@ -17,4 +19,9 @@
     <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
   </SmartSqlMaps>
 </SmartSqlMapConfig>
+```
+
+### SmartSqlMap
+``` xml
+
 ```
