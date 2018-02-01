@@ -1,15 +1,21 @@
 # 简介
 
-## 0. Why ?
+## 0. Why
+
 - 拥抱 跨平台 DotNet Core，是时候了。
 - 基于Dapper，不再重复造轮子。Dapper性能你懂的。
+
 ---
+
 ## 1. So SmartSql
- - TargetFrameworks: .NETFramework 4.6 & .NETStandard 1.3 & .NETStandard 2.0
- - SmartSql = Dapper + MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting + ...... 
-----
+
+- TargetFrameworks: .NETFramework 4.6 & .NETStandard 1.3 & .NETStandard 2.0
+- SmartSql = Dapper + MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting + ......
+
+---
 
 ## 2. 主要特性 (√ 为已完成，未打 √ 为计划特性)
+
 - 1 ORM
   - 1.1 Sync
   - 1.2 Async
@@ -28,20 +34,22 @@
     - 5.2.2 Generate Tool
 - 6 查询缓存  √
   - 6.1 SmartSql.Cache.Memory  √
-      - 6.1.1 Fifo  √
-      - 6.1.2 Lru  √
+    - 6.1.1 Fifo  √
+    - 6.1.2 Lru  √
   - 6.2 SmartSql.Cache.Redis  √
   - 6.3 缓存事务一致性
 - 7 分布式配置插件
   - 7.1 IConfigLoader √ (配置文件加载器)
   - 7.2 LocalFileConfigLoader  √ √ (本地文件配置加载器)
-      - 7.2.1 Load SmartSqlMapSource Xml  √
-      - 7.3.1 Load SmartSqlMapSource Directory √
+    - 7.2.1 Load SmartSqlMapSource Xml  √
+    - 7.3.1 Load SmartSqlMapSource Directory √
   - 7.3 SmartSql.ZooKeeperConfig √ (ZooKeeper 分布式配置文件加载器)
-----
 
-## 3. 性能 
-### 查询次数(未开启缓存):100W 
+---
+
+## 3. 性能
+
+### 查询次数(未开启缓存):100W
 
 | ORM | Total\(ms\) |
 | --- | :---: |
@@ -56,15 +64,20 @@
 | SmartSql | 6075 |
 | Dapper | 5931 |
 | MyBaits | 6574 |
-----
+
+---
 
 ## 4. 安装 (NuGet)
-```
+
+``` csharp
 Install-Package SmartSql
 ```
+
 ## 5. 常规代码
+
 ### 查询
-``` CSharp
+
+``` csharp
             ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
             SqlMapper.Query<T_Test>(new RequestContext
             {
@@ -73,8 +86,10 @@ Install-Package SmartSql
                 Request = new { Ids = new long[] { 1, 2, 3, 4 } }
             });
 ```
-### 事务 
-``` CSharp
+
+### 事务
+
+``` csharp
             try
             {
                 ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
@@ -99,6 +114,7 @@ Install-Package SmartSql
                 throw ex;
             }
 ```
+
 ## 6. 技术交流
 
 点击链接加入QQ群【SmartSql 官方交流群】：[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
