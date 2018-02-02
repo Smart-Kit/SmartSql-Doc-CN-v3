@@ -51,7 +51,7 @@
 
 ### 查询次数(未开启缓存):100W
 
-| ORM | Total\(ms\) |
+| ORM | Total(ms) |
 | --- | :---: |
 | SmartSql | 63568 |
 | Dapper | 60023 |
@@ -59,7 +59,7 @@
 
 ### 查询次数(未开启缓存):10W
 
-| ORM | Total\(ms\) |
+| ORM | Total(ms) |
 | --- | :---: |
 | SmartSql | 6075 |
 | Dapper | 5931 |
@@ -94,18 +94,7 @@ Install-Package SmartSql
             {
                 ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
                 SqlMapper.BeginTransaction();
-                SqlMapper.Execute(new RequestContext
-                {
-                    Scope = "T_Test",
-                    SqlId = "Add",
-                    Request = new T_Test { }
-                });
-                SqlMapper.Execute(new RequestContext
-                {
-                    Scope = "T_Test",
-                    SqlId = "Update",
-                    Request = new T_Test { }
-                });
+                //BizCode
                 SqlMapper.CommitTransaction();
             }
             catch (Exception ex)

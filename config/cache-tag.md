@@ -31,7 +31,6 @@
 | FlushOnExecute | 事件触发策略 |
 | Parameter | 作为 ICacheProvider 初始化参数  |
 
-
 ## FlushInterval
 
 | 属性       |    说明   |
@@ -40,13 +39,11 @@
 | Minutes   | 分 |
 | Seconds   | 秒 |
 
-
 ## FlushOnExecute
 
 | 属性       |    说明   |
 | :--------- | --------:|
 | Statement    | 触发刷新缓存的声明  |
-
 
 ## Parameter
 

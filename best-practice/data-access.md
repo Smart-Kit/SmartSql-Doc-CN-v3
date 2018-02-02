@@ -5,4 +5,3 @@
 ``` csharp
 Install-Package SmartSql.DataAccess
 ```
-
