@@ -104,6 +104,13 @@ Install-Package SmartSql
             }
 ```
 
-## 6. 技术交流
+## 6. 文档地址
+
+- [在线阅读地址](https://doc.smartsql.net/)
+- [PDF](https://www.gitbook.com/download/pdf/book/ahoo-wang/smartsql-doc-cn)
+- [Mobi](https://www.gitbook.com/download/mobi/book/ahoo-wang/smartsql-doc-cn)
+- [ePub](https://www.gitbook.com/download/epub/book/ahoo-wang/smartsql-doc-cn)
+
+## 7. 技术交流
 
 点击链接加入QQ群【SmartSql 官方交流群】：[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
