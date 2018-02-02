@@ -14,7 +14,11 @@
 * [SmartSqlMap](config/sqlmap.md)
 * [Cache](config/cache-tag.md)
 
-## DataAccess
+## 最佳实践
+
+* [Asp.Net Core](best-practice/aspnetcore.md)
+* [代码生成器-动软](best-practice/code-generator-codematic.md)
+* [DataAccess](best-practice/data-access.md)
 
 ## 插件
 
