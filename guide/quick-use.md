@@ -11,7 +11,8 @@
     IsWatchConfigFile="true"
   />
   <Database>
-    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::] -->
+    <!--<DbProvider Name="MySqlClientFactory" ParameterPrefix="?" Type="MySql.Data.MySqlClient.MySqlClientFactory,MySql.Data"/>-->
+    <!--<DbProvider Name="OracleClientFactory" ParameterPrefix=":" Type="Oracle.ManagedDataAccess.Client.OracleClientFactory,Oracle.ManagedDataAccess"/>-->
     <DbProvider Name="SqlClientFactory" ParameterPrefix="@" Type="System.Data.SqlClient.SqlClientFactory,System.Data.SqlClient"/>
     <Write Name="WriteDB" ConnectionString="Data Source=Master.SmartSql.Net;database=SmartSqlDB;uid=sa;pwd=SmartSql.Net"/>
     <Read Name="ReadDB-0" ConnectionString="Data Source=Slave-0.SmartSql.Net;database=TestDB;uid=sa;pwd=SmartSql.net" Weight="80"/>
