@@ -42,18 +42,13 @@
 | For        | 用于参数为IEnumerable,遍历参数动态拼接Sql |
 | Where      | 继承至Dynamic,用于包裹筛选标签,匹配的第一个筛选标签前缀被忽略,并添加 Where 前缀|
 | Set      | 继承至Dynamic,用于Update,包裹筛选标签,匹配的第一个筛选标签前缀被忽略,并添加 Set 前缀,必须匹配至少一个子标签，否则将抛出SmartSqlException异常。|
+| Placeholder    | 占位符标签，用于替换参数键值 |
 
-### IsNotEmpty
-
-| 属性       |    说明   |
-| :--------- | --------:|
-| Prepend    | 查询前缀  |
-| Property   | 参数键名  |
-
-#### Demo
+### Demo
 
 ``` xml
 <IsNotEmpty Prepend="And" Property="OrderStatus">
     T.OrderStatus=@OrderStatus
 </IsNotEmpty>
+
 ```
