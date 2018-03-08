@@ -48,7 +48,7 @@
 
 #### For
 
-> 如果枚举类型里边为（值类型 | String）, Key属性值为必选，且与For标签内键值保持一致
+> 如果数组内类型里边为（值类型 | String）, Key属性值为必选，且与For标签内键值保持一致
 
 ``` csharp
     var list = SqlMapper.Query<T_Test>(new RequestContext
@@ -68,7 +68,7 @@
     </For>
 ```
 
-> 如果枚举类型里边为 !（值类型 | String）
+> 如果数组内类型里边为 !（值类型 | String）
 
 ``` csharp
     IList<T_Test> test_list = new List<T_Test> {
