@@ -46,9 +46,52 @@
 
 ### Demo
 
-``` xml
-<IsNotEmpty Prepend="And" Property="OrderStatus">
-    T.OrderStatus=@OrderStatus
-</IsNotEmpty>
+#### For
 
+> 如果枚举类型里边为值类型&String, Key属性值为必选，且与For标签内键值保持一致
+
+``` csharp
+    var list = SqlMapper.Query<T_Test>(new RequestContext
+        {
+            Scope = "T_Test",
+            SqlId = "GetList",
+            Request = new
+            {
+                LikeNames = new string[] { "Ahoo", "Good" }
+            }
+        });
 ```
+
+``` xml
+    <For Prepend="And" Property="LikeNames" Key="Name" Open="(" Separator="Or" Close=")">
+        Name Like Concat('%',@Name,'%')
+    </For>
+```
+
+> 如果枚举类型里边为 !(值类型&String)
+
+``` csharp
+    IList<T_Test> test_list = new List<T_Test> {
+        new T_Test{  Name="1", Status=1},
+        new T_Test{  Name="2", Status=2}
+    };
+    SqlMapper.Execute(new RequestContext
+        {
+            Scope = "T_Test",
+            SqlId = "InsertRange",
+            Request = new { Values = test_list }
+        });
+```
+
+``` xml
+<Statement Id="InsertRange">
+    INSERT INTO T_Test
+    (Name,Status)
+    VALUES
+    <For Prepend="" Property="Values" Open="" Separator="," Close="">
+        (@Name,@Status)
+    </For>
+</Statement>
+```
+
+---
