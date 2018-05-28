@@ -6,10 +6,16 @@
 Install-Package SmartSql
 ```
 
-## 安装 SmartSql.DataAccess
+## 安装 SmartSql.DyRepository
 
 ``` chsarp
-Install-Package SmartSql.DataAccess
+Install-Package SmartSql.DyRepository
+```
+
+## 安装 SmartSql.DIExtension [For Asp.Net Core]
+
+``` chsarp
+Install-Package SmartSql.DIExtension
 ```
 
 ## 安装 SmartSql.Cache.Redis
@@ -22,6 +28,12 @@ Install-Package SmartSql.Cache.Redis
 
 ``` chsarp
 Install-Package SmartSql.ZooKeeperConfig
+```
+
+## 安装 SmartSql.TypeHandler
+
+``` chsarp
+Install-Package SmartSql.TypeHandler
 ```
 
 ## 安装 XML Schema File 文件获得智能提示

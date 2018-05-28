@@ -15,7 +15,6 @@ Frequency=2435768 Hz, Resolution=410.5481 ns, Timer=TSC
 |--------------- |------------------------- |------------------------ |-------------- |---------:|----------:|----------:|-----:|-----------:|----------:|----------:|----------:|
 |       SmartSql |       SmartSqlBenchmarks |                   Query | IEnumerable`1 | 101.6 ms | 0.2226 ms | 0.1738 ms |    1 |  2437.5000 | 1062.5000 |  375.0000 |  13.37 MB |
 |         Native |         NativeBenchmarks | Query_IsDBNull_GetValue | IEnumerable`1 | 101.7 ms | 0.4101 ms | 0.3635 ms |    1 |  2437.5000 | 1062.5000 |  375.0000 |  13.37 MB |
-|             EF |             EFBenchmarks |                   Query | IEnumerable`1 | 101.8 ms | 0.7792 ms | 0.7289 ms |    1 |  8500.0000 |         - |         - |  26.49 MB |
 |         Dapper |         DapperBenchmarks |                   Query | IEnumerable`1 | 104.4 ms | 1.3195 ms | 1.2342 ms |    2 |  3375.0000 | 1375.0000 |  625.0000 |  17.64 MB |
 | SmartSqlDapper | SmartSqlDapperBenchmarks |                   Query | IEnumerable`1 | 105.7 ms | 1.1697 ms | 1.0941 ms |    3 |  3750.0000 | 1437.5000 |  625.0000 |  19.47 MB |
 |         Native |         NativeBenchmarks |   Query_GetValue_DbNull | IEnumerable`1 | 107.4 ms | 1.0710 ms | 1.0018 ms |    4 |  3062.5000 | 1187.5000 |  500.0000 |  16.42 MB |
