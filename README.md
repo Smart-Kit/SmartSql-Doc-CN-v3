@@ -1,5 +1,7 @@
 # 简介
 
+>[SmartSql-Starter](https://github.com/Ahoo-Wang/SmartSql-Starter)
+
 ## 0. Why
 
 - 拥抱 跨平台 DotNet Core，是时候了。
