@@ -5,7 +5,7 @@
 ## 0. Why
 
 - 拥抱 跨平台 DotNet Core，是时候了。
-- 把你的双手从数据访问层解放出来，少加点班吧。
+- 高性能、高生产力，史上最轻量级的ORM。**107kb**
 
 ---
 
@@ -30,8 +30,8 @@
 - 4 日志 √
   - 4.1 基于 Microsoft.Extensions.Logging.Abstractions  (当你需要跟踪调试的时候一切都是那么一目了然)
 - 5 Dynamic Repository
-  - 5.1 SmartSql.DyRepository  √
-- 6 查询缓存  √
+  - 5.1 SmartSql.DyRepository  √ （解放你的双手，你来定义仓储接口，我来实现数据库访问）
+- 6 查询缓存  √ （热数据缓存，一个配置轻松搞定）
   - 6.1 SmartSql.Cache.Memory  √
     - 6.1.1 Fifo  √
     - 6.1.2 Lru  √
