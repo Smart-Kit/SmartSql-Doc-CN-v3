@@ -1,12 +1,64 @@
 # Asp.Net Core 最佳实践
 
-## 安装 SmartSql.DIExtension
-
-``` chsarp
-Install-Package SmartSql.DIExtension
+## 常规操作
+### 安装 SmartSql
+``` powershell
+Install-Package SmartSql
 ```
 
-## 注入依赖
+### 安装 SmartSql.DIExtension
+
+``` powershell
+Install-Package SmartSql.DIExtension
+```
+### 配置SmartSqlConfig.xml
+- 写库（Write）必选 唯一节点
+- 读库（Read）可选 多节点配置
+#### MYSQL
+- 首先安装mysql 客户端 Mysql.Data
+``` powershell
+Install-Package Mysql.Data
+```
+``` xml
+<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
+  <Settings IsWatchConfigFile="false" />
+  <Database>
+    <DbProvider Name="MySqlClientFactory" ParameterPrefix="?" Type="MySql.Data.MySqlClient.MySqlClientFactory,MySql.Data"/>
+    <Write Name="WriteDB" ConnectionString="Data Source=.;database=SmartSqlDB;uid=SmartSql;pwd=Rocher2018;Charset=utf8;SslMode=none"/>
+    <Read Name="ReadDB-0" ConnectionString="Data Source=.;database=SmartSqlDB-Read1;uid=SmartSql;pwd=Rocher2018;Charset=utf8;SslMode=none" Weight="80"/>
+    <Read Name="ReadDB-1" ConnectionString="Data Source=.;database=SmartSqlDB-Read2;uid=SmartSql;pwd=Rocher2018;Charset=utf8;SslMode=none" Weight="20"/>
+  </Database>
+  <SmartSqlMaps>
+    <!--两种配置方式 推荐Directory模式-->
+    <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>    
+    <SmartSqlMap Path="Maps/T_User.xml" Type="File"></SmartSqlMap> 
+  </SmartSqlMaps>
+</SmartSqlMapConfig>
+
+```
+
+#### MSSQL
+``` xml
+<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
+  <Settings
+     IsWatchConfigFile="true"
+  />
+  <Database>
+    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::] -->
+    <DbProvider Name="SqlClientFactory" ParameterPrefix="@" Type="System.Data.SqlClient.SqlClientFactory,System.Data.SqlClient"/>
+    <Write Name="WriteDB" ConnectionString="Data Source=.;database=SmartSqlDB;uid=SmartSql;pwd=Rocher2018"/>
+    <Read Name="ReadDB-1" ConnectionString="Data Source=.;database=SmartSqlDB-Read1;uid=SmartSql;pwd=Rocher2018"/>
+    <Read Name="ReadDB-2" ConnectionString="Data Source=.;database=SmartSqlDB-Read2;uid=SmartSql;pwd=Rocher2018"/>
+  </Database>
+  <SmartSqlMaps>
+    <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
+  </SmartSqlMaps>
+</SmartSqlMapConfig>
+```
+
+### 注入依赖
 
 ``` csharp
  services.AddSmartSql();
@@ -17,7 +69,7 @@ Install-Package SmartSql.DIExtension
  });
 ```
 
-## 定义仓储接口
+### 定义仓储接口
 
 ``` csharp
     /// <summary>
@@ -39,11 +91,11 @@ Install-Package SmartSql.DIExtension
         User Get(object reqParams);
         long Insert(User entity);
         int Update(User entity);
-        int Delete(User enttiy);
+        int Delete(User entity);
     }
 ```
 
-## 尽情享用
+### 尽情享用
 
 ``` csharp
     public class UserService
