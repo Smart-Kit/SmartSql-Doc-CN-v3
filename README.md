@@ -215,3 +215,8 @@ Install-Package SmartSql.DIExtension
 ## 8. 技术交流
 
 点击链接加入QQ群【SmartSql 官方交流群】：[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
+
+## 9. 贡献者
+
+- [Ahoo-Wang](https://github.com/Ahoo-Wang)
+- [RocherKong](https://github.com/RocherKong)
