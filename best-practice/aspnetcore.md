@@ -13,6 +13,27 @@ Install-Package SmartSql.DIExtension
 ### 配置SmartSqlConfig.xml
 - 写库（Write）必选 唯一节点
 - 读库（Read）可选 多节点配置
+#### Postgresql
+- Postgresql 客户端 *Npgsql*
+``` powershell
+Install-Package Npgsql
+```
+``` xml
+<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
+  <Settings
+    IsWatchConfigFile="true"
+  />
+  <Database>
+    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::|Postgresql:@] -->
+    <DbProvider Name="SqlClientFactory" ParameterPrefix="@" Type="Npgsql.NpgsqlFactory,Npgsql"/>
+    <Write Name="WriteDB" ConnectionString="Server=localhost;Port=5432;User Id=postgres;Password=Rocher2016; Database=SmartSqlDB;"/>
+  </Database>
+  <SmartSqlMaps>
+    <SmartSqlMap Path="Maps/" Type="Directory"></SmartSqlMap>
+  </SmartSqlMaps>
+</SmartSqlMapConfig>
+```
 #### MYSQL
 - 安装mysql 客户端 *Mysql.Data*
 ``` powershell
@@ -36,7 +57,6 @@ Install-Package Mysql.Data
   </SmartSqlMaps>
 </SmartSqlMapConfig>
 ```
-
 #### MSSQL
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -53,27 +73,6 @@ Install-Package Mysql.Data
   </Database>
   <SmartSqlMaps>
     <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
-  </SmartSqlMaps>
-</SmartSqlMapConfig>
-```
-#### Postgresql
-- Postgresql 客户端 *Npgsql*
-``` powershell
-Install-Package Npgsql
-```
-``` xml
-<?xml version="1.0" encoding="utf-8" ?>
-<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
-  <Settings
-    IsWatchConfigFile="true"
-  />
-  <Database>
-    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::|Postgresql:@] -->
-    <DbProvider Name="SqlClientFactory" ParameterPrefix="@" Type="Npgsql.NpgsqlFactory,Npgsql"/>
-    <Write Name="WriteDB" ConnectionString="Server=localhost;Port=5432;User Id=postgres;Password=Rocher2016; Database=SmartSqlDB;"/>
-  </Database>
-  <SmartSqlMaps>
-    <SmartSqlMap Path="Maps/" Type="Directory"></SmartSqlMap>
   </SmartSqlMaps>
 </SmartSqlMapConfig>
 ```
