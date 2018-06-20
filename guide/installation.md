@@ -46,5 +46,5 @@ VS2017目录地址：\Microsoft Visual Studio\2017\Enterprise\Xml\Schemas
 
 | 文件      |   地址   |
 | --------  | -----:  |
-| SmartSqlMapConfig.xsd  | [SmartSqlMapConfig.xsd](https://github.com/Ahoo-Wang/SmartSql/blob/master/Docs/Schemas/SmartSqlMapConfig.xsd) |
-| SmartSqlMap.xsd        |   [SmartSqlMap.xsd](https://github.com/Ahoo-Wang/SmartSql/blob/master/Docs/Schemas/SmartSqlMap.xsd)   |
+| SmartSqlMapConfig.xsd  | [SmartSqlMapConfig.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMapConfig.xsd) |
+| SmartSqlMap.xsd        |   [SmartSqlMap.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMap.xsd)   |

@@ -4,6 +4,6 @@
 
 | 模板 | 文件地址 |
 | --- | :---: |
-| Entity | [Entity](https://github.com/Ahoo-Wang/SmartSql/blob/master/Docs/Codematic.Template/Entity.cmt) |
-| SmartSqlMap-MSSql | [SmartSqlMap](https://github.com/Ahoo-Wang/SmartSql/blob/master/Docs/Codematic.Template/SmartSqlMapForMS-SQL.cmt) |
-| SmartSqlMap-MySql | [SmartSqlMap](https://github.com/Ahoo-Wang/SmartSql/blob/master/Docs/Codematic.Template/SmartSqlMapForMySql.cmt) |
+| Entity | [Entity](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Codematic.Template/Entity.cmt) |
+| SmartSqlMap-MSSql | [SmartSqlMap](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Codematic.Template/SmartSqlMapForMS-SQL.cmt) |
+| SmartSqlMap-MySql | [SmartSqlMap](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Codematic.Template/SmartSqlMapForMySql.cmt) |

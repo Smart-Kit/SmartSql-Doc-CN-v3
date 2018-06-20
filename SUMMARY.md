@@ -18,9 +18,10 @@
 
 * [Asp.Net Core](best-practice/aspnetcore.md)
 * [代码生成器-动软](best-practice/code-generator-codematic.md)
-* [DataAccess](best-practice/data-access.md)
 
 ## 插件
 
+* [动态代理仓储](guide/dy-repository.md)
+* [类型处理器](guide/type-handler.md)
 * [Redis 分布式缓存一致性](guide/redis-cache.md)
 * [ZooKeeper 分布式配置文件](guide/zookeeper-config.md)
