@@ -2,7 +2,7 @@
 
 ## 为什么不支持 Linq?
 
-SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安全感.所以目前没有计划支持 Linq 编程模式.
+SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安全感.所以目前没有计划支持 Code First 编程模式.
 
 ## 对于简单CURD配置
 
@@ -15,7 +15,7 @@ Xml 的标签语法用起来会比较灵活. 比如 筛选标签,嵌套复用,�
 
 ## 集群场景如何使用获得缓存一致性
 
-SmartSql提供了Redis缓存插件,可通过NuGet获得:
+SmartSql提供了Redis缓存插件,可通过NuGet安装:
 
 ``` csharp
 Install-Package SmartSql.Cache.Redis
@@ -23,7 +23,7 @@ Install-Package SmartSql.Cache.Redis
 
 ## 集群场景中Sql配置很多Copy怎么办
 
-SmartSql 提供了 ZooKeeper配置插件,通过NuGet获得:
+SmartSql 提供了 ZooKeeper配置插件,通过NuGet安装:
 
 ``` csharp
 Install-Package SmartSql.ZooKeeperConfig
