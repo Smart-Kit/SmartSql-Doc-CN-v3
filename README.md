@@ -29,7 +29,7 @@
 ## 1. So SmartSql
 
 - TargetFrameworks: .NETFramework 4.6 & .NETStandard 2.0
-- SmartSql = MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting + ......
+- SmartSql = SmartSql = MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting +Dynamic Repository + ......
 
 ---
 
@@ -72,9 +72,8 @@ Intel Core i7-6700K CPU 4.00GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=2.1.201
   [Host]     : .NET Core 2.0.7 (CoreCLR 4.6.26328.01, CoreFX 4.6.26403.03), 64bit RyuJIT
   DefaultJob : .NET Core 2.0.7 (CoreCLR 4.6.26328.01, CoreFX 4.6.26403.03), 64bit RyuJIT
-
-
 ```
+
 |            ORM |                     Type |                  Method |        Return |      Mean |     Error |    StdDev | Rank |     Gen 0 |     Gen 1 |     Gen 2 | Allocated |
 |--------------- |------------------------- |------------------------ |-------------- |----------:|----------:|----------:|-----:|----------:|----------:|----------:|----------:|
 |         Native |         NativeBenchmarks |   Query_GetValue_DbNull | IEnumerable`1 |  78.39 ms | 0.8935 ms | 0.7921 ms |    1 | 3000.0000 | 1125.0000 |  500.0000 |  15.97 MB |
@@ -143,7 +142,7 @@ Install-Package SmartSql.DIExtension
  services.AddRepositoryFactory();
  services.AddRepositoryFromAssembly((options) =>
  {
-    options.AssemblyString = "SmartSql.Starter.Repository";
+    options.AssemblyString = "SmartSql.Starter.Repository";//仓储接口项目
  });
 ```
 
@@ -178,14 +177,14 @@ Install-Package SmartSql.DIExtension
 ``` csharp
     public class UserService
     {
-        private readonly ISmartSqlMapper _smartSqlMapper;
+        private readonly ITransaction _transaction;
         private readonly IUserRepository _userRepository;
 
         public UserService(
-             ISmartSqlMapper smartSqlMapper
+             ITransaction transaction
             , IUserRepository userRepository)
         {
-            _smartSqlMapper = smartSqlMapper;
+            _transaction = transaction;
             _userRepository = userRepository;
         }
 
@@ -196,7 +195,7 @@ Install-Package SmartSql.DIExtension
             {
                 throw new ArgumentException($"{nameof(request.UserName)} has already existed!");
             }
-            return _userRepository.Add(new Entitiy.User
+            return _userRepository.Insert(new Entitiy.User
             {
                 UserName = request.UserName,
                 Password = request.Password,
@@ -209,13 +208,13 @@ Install-Package SmartSql.DIExtension
         {
             try
             {
-                _smartSqlMapper.BeginTransaction();
+                _transaction.BeginTransaction();
                 //Biz();
-                _smartSqlMapper.CommitTransaction();
+                _transaction.CommitTransaction();
             }
             catch (Exception ex)
             {
-                _smartSqlMapper.RollbackTransaction();
+                _transaction.RollbackTransaction();
                 throw ex;
             }
         }
