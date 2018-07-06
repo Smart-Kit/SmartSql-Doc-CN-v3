@@ -154,7 +154,7 @@ Install-Package SmartSql.DIExtension
     /// 可传入自定义模板
     /// RepositoryBuilder builder=new RepositoryBuilder("I{Scope}DAL");
     /// </summary>
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, string>
     {
         /// <summary>
         /// 属性可选 [Statement(Execute = ExecuteBehavior.Auto,Id = "Query")]
@@ -163,12 +163,8 @@ Install-Package SmartSql.DIExtension
         /// </summary>
         /// <param name="reqParams"></param>
         /// <returns></returns>
-        IEnumerable<User> Query(object reqParams);
-        long GetRecord(object reqParams);
-        User Get(object reqParams);
-        long Insert(User entity);
-        int Update(User entity);
-        int Delete(User enttiy);
+        [Statement(Sql = "Select Top(@taken) T.* From User T With(NoLock);")]
+        IEnumerable<User> QueryBySql(int taken);
     }
 ```
 
