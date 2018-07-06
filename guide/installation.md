@@ -12,7 +12,7 @@ Install-Package SmartSql
 Install-Package SmartSql.DyRepository
 ```
 
-## 安装 SmartSql.DIExtension [For Asp.Net Core]
+## 安装 SmartSql.DIExtension [For DI]
 
 ``` chsarp
 Install-Package SmartSql.DIExtension
