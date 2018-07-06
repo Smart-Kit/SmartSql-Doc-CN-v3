@@ -2,7 +2,10 @@
 
 ## 为什么不支持 Linq?
 
-SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安全感.所以目前没有计划支持 Code First 编程模式.
+SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安全感。所以目前没有计划支持 Code First 编程模式。
+>我想好了Sql怎么写，然后再来写Linq,完了可能还要再查看一下Linq输出的Sql是什么样的，这真是糟糕的体验。要想对Sql做绝对的优化，那么开发者必须对Sql有绝对的控制权。另外Sql本身很简单，为何要增加一层翻译器呢？
+
+> **Codefirst 一个美好，却不切实际的想法。**
 
 ## SmartSql支持哪些数据库？
 
@@ -13,8 +16,8 @@ SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安�
 支持，可以通过配置引入多个数据库实例：
 
 ``` csharp
-    var sqlServerMapper = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-SqlServer.xml");
-    var mySqlMapepr = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-MySql.xml");
+var sqlServerMapper = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-SqlServer.xml");
+var mySqlMapepr = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-MySql.xml");
 ```
 
 ## SmartSql性能如何？
