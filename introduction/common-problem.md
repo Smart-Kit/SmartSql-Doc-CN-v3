@@ -9,7 +9,7 @@ SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安�
 
 ## 对SmartSql很感兴趣，不只从何开始？
 
-请阅读实例项目：<https://github.com/Ahoo-Wang/SmartSql-Starter>
+请阅读示例项目：<https://github.com/Ahoo-Wang/SmartSql-Starter>
 
 ## SmartSql支持哪些数据库？
 
