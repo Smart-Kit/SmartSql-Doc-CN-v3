@@ -4,6 +4,27 @@
 
 SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安全感.所以目前没有计划支持 Code First 编程模式.
 
+## SmartSql支持哪些数据库？
+
+支持，只要是实现了ADO.NET的数据库驱动的数据库均支持，您只需要安装好对应的驱动即可。
+
+## SmartSql是否支持多数据库？
+
+支持，可以通过配置引入多个数据库实例：
+
+``` csharp
+    var sqlServerMapper = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-SqlServer.xml");
+    var mySqlMapepr = MapperContainer.Instance.GetSqlMapper("SmartSqlMapConfig-MySql.xml");
+```
+
+## SmartSql性能如何？
+
+SmartSql的性能与Dapper是保存同一级别的≈原生手写（另外多个其他ORM在自己的测试报告中写明比Dapper性能还高，**请同学们保持好奇**），文档中的 SmartSql 性能对比测试报告是开放了源代码的，任何对于性能感兴趣的同学均可以clone源代码自己跑一遍性能测试。**自己Run的性能测试才是真的测试！**
+
+## SmartSql可用性如何？
+
+SmartSql 已历经1年多的线上数十个微服务场景验证，其性能、可用性、生产力是得到验证的。
+
 ## 对于简单CURD配置
 
 SmartSql 提供了常规Sql操作的模板,开发人员可以直接通过模板生成Xml配置文档.
