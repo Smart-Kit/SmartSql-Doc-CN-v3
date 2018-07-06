@@ -38,8 +38,8 @@
 | 标签           |    说明   |
 | :---------     | --------:|
 | DbProvider  | 各Db Client 的 DbProviderFactory 实现类 |
-| Write | 写库 |
-| Read | 读库 |
+| Write | 写库（必选） |
+| Read | 读库（可选） |
 
 ### DbProvider 标签
 
