@@ -7,6 +7,10 @@ SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安�
 
 > **Codefirst 一个美好，却不切实际的想法。**
 
+## 对SmartSql很感兴趣，不只从何开始？
+
+请阅读实例项目：<https://github.com/Ahoo-Wang/SmartSql-Starter>
+
 ## SmartSql支持哪些数据库？
 
 支持，只要是实现了ADO.NET的数据库驱动的数据库均支持，您只需要安装好对应的驱动即可。
