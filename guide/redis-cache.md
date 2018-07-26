@@ -1,5 +1,11 @@
 # Redis 分布式缓存
 
+## 安装 SmartSql.Cache.Redis
+
+``` chsarp
+Install-Package SmartSql.Cache.Redis
+```
+
 ## Cache 配置
 
 ``` xml

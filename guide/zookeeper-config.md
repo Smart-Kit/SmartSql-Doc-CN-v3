@@ -1,5 +1,11 @@
 # Zookeeper 分布式配置
 
+## 安装 SmartSql.ZooKeeperConfig
+
+``` chsarp
+Install-Package SmartSql.ZooKeeperConfig
+```
+
 ## Demo
 
 ``` csharp
