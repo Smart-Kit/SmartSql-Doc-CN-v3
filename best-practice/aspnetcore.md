@@ -1,23 +1,32 @@
-# Asp.Net Core 最佳实践
+# SmartSql 最佳实践
 
 ## 常规操作
+
 ### 安装 SmartSql
+
 ``` powershell
 Install-Package SmartSql
 ```
 
 ### 安装 SmartSql.DIExtension
+
 ``` powershell
 Install-Package SmartSql.DIExtension
 ```
+
 ### 配置SmartSqlConfig.xml
+
 - 写库（Write）必选 唯一节点
 - 读库（Read）可选 多节点配置
+
 #### Postgresql
+
 - Postgresql 客户端 *Npgsql*
+
 ``` powershell
 Install-Package Npgsql
 ```
+
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
 <SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
@@ -34,12 +43,17 @@ Install-Package Npgsql
   </SmartSqlMaps>
 </SmartSqlMapConfig>
 ```
+
 #### MYSQL
+
 - 安装mysql 客户端 *Mysql.Data*
+
 ``` powershell
 Install-Package Mysql.Data
 ```
+
 - 配置SmartSqlMapConfig.xml
+
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
 <SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
@@ -57,7 +71,9 @@ Install-Package Mysql.Data
   </SmartSqlMaps>
 </SmartSqlMapConfig>
 ```
+
 #### MSSQL
+
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
 <SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
