@@ -4,12 +4,33 @@
 | :--------- | --------:|
 | Scope    | 域,用于SqlMap定义Sql声明范围  |
 
+## ResultMap
+
+| 属性       |    说明   |
+| :--------- | --------:|
+
+## ParameterMap
+
+| 属性       |    说明   |
+| :--------- | --------:|
+
+## MultipleResultMap
+
+| 属性       |    说明   |
+| :--------- | --------:|
+
 ## Statement标签
 
 | 属性       |    说明   |
 | :--------- | --------:|
 | Id    | 唯一性编号  |
 | Cache    | 缓存策略编号,引用自Cache标签  |
+| CommandType    | Text/StoredProcedure , Default:Text |
+| SourceChoice    | Unknow/Write/Read , Default:Unknow  |
+| ReadDb    |   |
+| ResultMap    |   |
+| ParameterMap    |   |
+| MultipleResultMap    |   |
 
 ## Statement 筛选子标签
 

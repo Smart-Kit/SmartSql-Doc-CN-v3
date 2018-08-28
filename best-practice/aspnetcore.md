@@ -96,12 +96,10 @@ Install-Package Mysql.Data
 ### 注入依赖
 
 ``` csharp
- services.AddSmartSql();
- services.AddRepositoryFactory();
- services.AddRepositoryFromAssembly((options) =>
- {
-    options.AssemblyString = "SmartSql.Starter.Repository";
- });
+    services.AddSmartSqlRepositoryFromAssembly((options) =>
+    {
+        options.AssemblyString = "SmartSql.Starter.Repository";
+    });
 ```
 
 ### 定义仓储接口
@@ -133,32 +131,57 @@ Install-Package Mysql.Data
 ### 尽情享用
 
 ``` csharp
+using SmartSql.Abstractions;
+using SmartSql.Starter.API.Message.Request.User;
+using SmartSql.Starter.Repository;
+using System;
+namespace SmartSql.Starter.Service
+{
     public class UserService
     {
-        private readonly ISmartSqlMapper _smartSqlMapper;
+        private readonly ITransaction _transaction;
         private readonly IUserRepository _userRepository;
 
         public UserService(
-             ISmartSqlMapper smartSqlMapper
+             ITransaction transaction
             , IUserRepository userRepository)
         {
-            _smartSqlMapper = smartSqlMapper;
+            _transaction = transaction;
             _userRepository = userRepository;
         }
 
         public long Add(AddRequest request)
         {
-            int existsNum = _userRepository.Exists(new { request.UserName });
-            if (existsNum > 0)
+            bool isExist = _userRepository.IsExist(new { EqUserName = request.UserName });
+            if (isExist)
             {
                 throw new ArgumentException($"{nameof(request.UserName)} has already existed!");
             }
-            return _userRepository.Add(new Entitiy.User
+            return _userRepository.Insert(new Entitiy.User
             {
                 UserName = request.UserName,
-                Password = request.Password,
+                Pwd = request.Pwd,
                 Status = Entitiy.UserStatus.Ok,
                 CreationTime = DateTime.Now,
+            });
+        }
+
+
+
+        public int AddExtendData(AddExtendDataRequest request)
+        {
+            return _userRepository.InsertExtendData(new Entitiy.UserExtendData
+            {
+                UserId = request.UserId,
+                Info = request.Info
+            });
+        }
+        public int UpdateExtendData(UpdateExtendDataRequest request)
+        {
+            return _userRepository.UpdateExtendData(new Entitiy.UserExtendData
+            {
+                UserId = request.UserId,
+                Info = request.Info
             });
         }
 
@@ -166,15 +189,17 @@ Install-Package Mysql.Data
         {
             try
             {
-                _smartSqlMapper.BeginTransaction();
+                _transaction.BeginTransaction();
                 //Biz();
-                _smartSqlMapper.CommitTransaction();
+                _transaction.CommitTransaction();
             }
             catch (Exception ex)
             {
-                _smartSqlMapper.RollbackTransaction();
+                _transaction.RollbackTransaction();
                 throw ex;
             }
         }
+
     }
+}
 ```
