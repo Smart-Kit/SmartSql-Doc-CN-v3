@@ -15,8 +15,9 @@
 * [Cache](config/cache-tag.md)
 
 ## 动态仓储
+
 * [简介](dyrepository/intro.md)
-* [配置](dyrepository/optons.md)
+* [配置](dyrepository/options.md)
 
 ## 最佳实践
 
