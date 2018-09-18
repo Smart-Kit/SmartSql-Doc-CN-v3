@@ -14,6 +14,10 @@
 * [SmartSqlMap](config/sqlmap.md)
 * [Cache](config/cache-tag.md)
 
+## 动态仓储
+* [简介](dyrepository/intro.md)
+* [配置](dyrepository/optons.md)
+
 ## 最佳实践
 
 * [Asp.Net Core](best-practice/aspnetcore.md)
