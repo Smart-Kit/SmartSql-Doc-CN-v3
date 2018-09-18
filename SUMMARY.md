@@ -16,7 +16,7 @@
 
 ## 动态仓储
 * [简介](dyrepository/intro.md)
-* [使用](dyrepository/intro.md)
+* [配置](dyrepository/optons.md)
 
 ## 最佳实践
 
