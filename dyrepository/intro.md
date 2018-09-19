@@ -27,7 +27,8 @@ DyRepository可以将任意一个接口实现出查询数据库的工具，CURD�
 ### 准备工作
 
 1. 先创建一个仓储，这个仓储不依赖SmartSql，只是普普通通的仓储接口
-```cs
+
+``` csharp
     //仓储接口，默认模版是I{Scope}Repository，所以这个接口的Scope是Activity
     public interface IActivityRepository
     {
@@ -38,7 +39,6 @@ DyRepository可以将任意一个接口实现出查询数据库的工具，CURD�
         //值类型的参数会自动封装为一个对象，所以这个方法的Request是new { activityId = activityId }
         Activity Query(long activityId);
     }
-    
 ```
 
 2. 创建配置xml文件SmartSqlMapConfig.xml：
@@ -100,7 +100,7 @@ DyRepository可以将任意一个接口实现出查询数据库的工具，CURD�
 
 如果不用DyRepository，我们需要用ISmartSqlMapper实现这个仓储。
 
-```cs
+``` csharp
 
     public class ActivityRepository : IActivityRepository
     {
@@ -127,9 +127,10 @@ DyRepository可以将任意一个接口实现出查询数据库的工具，CURD�
         }
     }
 ```
+
 再把实现类注册到IoC中:
 
-```cs
+``` csharp
 var services = new ServiceCollection();
 var services.AddSingleton<IActivityRepository,ActivityRepository>();
 ```
@@ -138,7 +139,7 @@ var services.AddSingleton<IActivityRepository,ActivityRepository>();
 
 如果使用DyRepository，我们只需配置一下IoC注册即可。
 
-```cs
+``` csharp
     var services = new ServiceCollection();
     services.AddSmartSqlRepositoryFromAssembly((options) =>
     {
@@ -150,7 +151,7 @@ var services.AddSingleton<IActivityRepository,ActivityRepository>();
 
 使用方法就注入接口，再调用接口方法了。
 
-```cs
+``` csharp
     // 假设ActivityService已经注册到IoC容器
     public class ActivityService
     {

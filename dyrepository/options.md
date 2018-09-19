@@ -9,12 +9,14 @@ DyRepository的配置分为默认配置、特性配置和注册配置，但是�
 ## 必须的配置:
 
 1. 单个注册
-```cs
+
+``` csharp
     services.AddRepository<IUserRepository>();
 ```
 
 2. 批量注册
-```cs
+
+``` csharp
     services.AddSmartSqlRepositoryFromAssembly((options) =>
     {
         //仓储接口所在程序集全名
@@ -35,7 +37,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 #### 特性配置
 
-```cs
+``` csharp
     [SqlMap(Scope = "User")]
     public interface IUserDao
     {
@@ -44,7 +46,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 #### 注册配置
 
-```cs
+``` csharp
     //接口还是那个接口
     public interface IUserDao
     {
@@ -70,7 +72,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 因为SmartSql的sql配置是可以动态渲染的，当同一个SqlId传入不同的参数，可以渲染出不同的查询条件。例如：
 
-```xml
+``` xml
     <Statement Id="Query">
       SELECT * FROM User T
       <Where>
@@ -88,7 +90,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 #### 特性配置
 
-```cs
+``` csharp
     [SqlMap(Scope = "User")]
     public interface IUserRepository
     {
@@ -104,7 +106,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 注册配置中是通过配置一个叫sqlIdNamingConvert的委托参数来实现接口方法名到SqlId的转换方法。
 
-```cs
+``` csharp
     services.AddSmartSqlRepositoryFactory(sqlIdNamingConvert: (type, method) =>
     {
         if (method.Name.StartsWith("QueryBy"))
@@ -130,7 +132,7 @@ I{Scope}Repository是默认配置的Scope模版，如IUserRepository的Scope就�
 
 即直接给接口方法绑定sql，无需再从xml中配置sql了，但请注意参数前缀还是需要在对应的配置文件配置。
 
-```cs
+``` csharp
     [Statement(Sql = "Select Top(@taken) T.* From User T With(NoLock);")]
     IEnumerable<User> QueryBySql(int taken);
 ```
@@ -148,7 +150,7 @@ Statement特性只标记在方法上，还有其他几个参数：
 
 即把接口方法的参数值传递给Sql渲染时指定参数名的参数，例如把id的值传递给@UserId：
 
-```cs
+``` csharp
     IEnumerable<User> Query([Param("UserId")]int id);
 ```
 

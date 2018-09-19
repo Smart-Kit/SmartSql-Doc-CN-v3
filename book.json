@@ -11,7 +11,7 @@
         }
     },
     "plugins": [
-        "prism","prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga"
+        "prism", "prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga"
     ],
     "pluginsConfig": {
         "prism": {
@@ -41,10 +41,6 @@
                 "type": "star",
                 "size": "small",
                 "count": true
-            }, {
-                "user": "Ahoo-Wang",
-                "type": "follow",
-                "size": "small"
             }]
         },
         "anchor-navigation-ex": {
