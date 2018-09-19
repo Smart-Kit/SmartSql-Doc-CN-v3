@@ -1,0 +1,75 @@
+{
+    "root": "./",
+    "title": "SmartSql",
+    "description": "拥抱 跨平台 DotNet Core，是时候了。高性能、高生产力，超轻量级的ORM。SmartSql = MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting +Dynamic Repository ......",
+    "author": "Ahoo Wang,ElderJames,RocherKong",
+    "keywords": "SmartSql, MyBatis ,Cache(Memory | Redis) ,ZooKeeper , R/W Splitting , Dynamic Repository,ORM,DotNet,.Net,dotnet core",
+    "language": "zh-hans",
+    "links": {
+        "sidebar": {
+            "SmartSql-GitHub": "https://github.com/Ahoo-Wang/SmartSql"
+        }
+    },
+    "plugins": [
+        "prism","prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga"
+    ],
+    "pluginsConfig": {
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-okaidia.css"
+            ]
+        },
+        "rss": {
+            "title": "SmartSql 使用教程",
+            "description": "拥抱 跨平台 DotNet Core，是时候了。高性能、高生产力，超轻量级的ORM。SmartSql = MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting +Dynamic Repository ......",
+            "author": "Ahoo Wang,ElderJames,RocherKong",
+            "feed_url": "https://doc.smartsql.net/rss",
+            "site_url": "https://doc.smartsql.net/",
+            "managingEditor": "ahoowang@qq.com",
+            "webMaster": "ahoowang@qq.com",
+            "categories": [
+                "SmartSql"
+            ]
+        },
+        "github": {
+            "url": "https://github.com/Ahoo-Wang/SmartSql"
+        },
+        "github-buttons": {
+            "buttons": [{
+                "user": "Ahoo-Wang",
+                "repo": "SmartSql",
+                "type": "star",
+                "size": "small",
+                "count": true
+            }, {
+                "user": "Ahoo-Wang",
+                "type": "follow",
+                "size": "small"
+            }]
+        },
+        "anchor-navigation-ex": {
+            "associatedWithSummary": false,
+            "showLevel": true,
+            "multipleH1": true,
+            "mode": "float",
+            "pageTop": {
+                "showLevelIcon": false,
+                "level1Icon": "fa fa-hand-o-right",
+                "level2Icon": "fa fa-hand-o-right",
+                "level3Icon": "fa fa-hand-o-right"
+            }
+        },
+        "favicon": {
+            "shortcut": "imgs/favicon.ico",
+            "bookmark": "imgs/favicon.ico",
+            "appleTouch": "imgs/SmartSql.png",
+            "appleTouchMore": {
+                "120x120": "imgs/SmartSql.png",
+                "180x180": "imgs/SmartSql.png"
+            }
+        },
+        "ga": {
+            "token": "UA-122662513-1"
+        }
+    }
+}

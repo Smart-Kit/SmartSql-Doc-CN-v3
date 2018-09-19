@@ -1,5 +1,11 @@
+---
+seo_title: 高性能、高生产力，超轻量级的ORM
+keywords: SmartSql, MyBatis ,Cache(Memory | Redis) ,ZooKeeper , R/W Splitting , Dynamic Repository,ORM,DotNet,.Net,dotnet core
+description :  拥抱 跨平台 DotNet Core，是时候了。高性能、高生产力，超轻量级的ORM。SmartSql = MyBatis + Cache(Memory | Redis) + ZooKeeper + R/W Splitting +Dynamic Repository
+---
+
 <p align="center">
-  <a href="https://doc.smartsql.net/" target="_blank"><img width="100"src="https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/SmartSql.png"></a>
+  <a href="https://github.com/Ahoo-Wang/SmartSql" target="_blank"><img width="100"src="./imgs/SmartSql.png"></a>
 </p>
 
 # 简介
@@ -7,6 +13,8 @@
 [![Join the chat at https://gitter.im/SmartSql-DotNet/Lobby](https://badges.gitter.im/SmartSql-DotNet/Lobby.svg)](https://gitter.im/SmartSql-DotNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 >[SmartSql-Starter](https://github.com/Ahoo-Wang/SmartSql-Starter)
+
+
 
 ## Nuget Packages
 

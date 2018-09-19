@@ -7,6 +7,7 @@
 * [快速使用](guide/quick-use.md)
 * [常见问题](introduction/common-problem.md)
 * [性能评测](introduction/performance-test.md)
+* [更新日志](CHANGES.md)
 
 ## 配置
 

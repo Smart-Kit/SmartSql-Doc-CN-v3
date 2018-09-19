@@ -1,5 +1,115 @@
 # SmartSql 更新历史记录
 
+## 3.7.0
+
+1. support cross SqlMap reference for #30
+2. modifying Statement.Ref for delay dependence
+3. optimize Analyse Statement.SqlCommandType
+4. optimize CheckIncludeCyclicDependency
+5. fixed MultipleResultMap.Root result Map
+6. fixed PreparedCommand Sql log output for IgnoreParameterCase
+
+## 3.6.8
+
+1. add support Statement for Transaction
+2. optimize Log output for issues:35
+3. add support [.] PropertyAccessor
+4. add support alias for SmartSqlOptions
+
+## 3.6.6
+
+1. fixed ObjectUtils key conflicts
+2. add support for SmartSqlMapper multiple instance injection
+3. add support for IServiceProvider.GetSmartSqlMapper(string configPath)
+
+``` csharp
+      var smartSqlMapper = serviceProvider.GetSmartSqlMapper("SmartSql");
+      var smartSqlMapper_1 = serviceProvider.GetSmartSqlMapper("SmartSql-1");
+```
+
+4. optimize Options DI for SmartSqlOptions.UseOptions
+
+``` csharp
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("SmartSqlConfig.json", false, true);
+
+            var configuration = builder.Build();
+            var services = new ServiceCollection();
+
+            services.AddOptions();
+            var smartSqlConfigJson = configuration.GetSection("SmartSqlConfig");
+            services.Configure<SmartSqlConfigOptions>("SmartSql", smartSqlConfigJson);
+
+            services.AddSmartSql(sp =>
+            {
+                return new SmartSqlOptions
+                {
+                     ConfigPath= "SmartSql"
+                }.UseOptions(sp);
+            });
+```
+
+## 3.6.4
+
+1. added support Root for MultipleResultMap
+2. added support ReadDb for Statement
+3. optimized PreparedCommand.Prepare log output
+
+## 3.6.3
+
+1. optimized ITransaction Extension
+2. default injection SmartSql for AddRepository DI
+3. fixed path error for SmartSql.Options
+4. fixed SqlCommandAnalyzer
+5. add SqlIdNamingConvert
+
+## v3.6.0-rc1
+
+1. add MultipleResultMap
+2. add GetNested api
+3. add GetNestedAsync api
+4. add FillMultiple api
+5. add FillMultipleAsync api
+6. optimized ValueTuple result type for Repository
+7. add support Nested result type for Repository
+
+``` xml
+    <MultipleResultMap Id="QueryByPageMReuslt">
+      <Result Property="Total"/>
+      <Result Property="List"/>
+    </MultipleResultMap>
+    <Statement Id="MQueryByPage" MultipleResultMap="QueryByPageMReuslt">
+      Select Count(1) From T_Entity;
+      Select Top 10 T.* From T_Entity T
+    </Statement>
+```
+
+``` csharp
+    public class QueryByPageResponse
+    {
+        public int Total { get; set; }
+        public IEnumerable<T_Entity> List { get; set; }
+    }
+
+QueryByPageResponse MQueryByPage();
+```
+
+## v3.5.14
+
+1. enhanced Maps.Statement support for CommandType and SourceChoice
+2. fixed Tag.For NotDirectValue bug
+3. optimized RequestContext.Request is DbParameterCollection
+
+## v3.5.10
+
+1. fixed Generic nested return value bug
+2. optimized DyRepository DI register
+3. fixed the same naming problems with different repository interfaces
+4. enhanced stored procedure support
+5. fixed the cache penetration problem with the cache value of null
+6. optimized storage procedure call interface construction
+
 ## v3.5.3
 
 1. add support ValueTuple result

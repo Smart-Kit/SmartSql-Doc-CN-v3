@@ -1,3 +1,7 @@
+---
+seo_title: 动态代理仓储配置
+---
+
 # DyRepository配置
 
 DyRepository的配置分为默认配置、特性配置和注册配置，但是都必须配置IoC注册，因为要都需要创建动态的接口实现到IoC中。
