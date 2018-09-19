@@ -13,7 +13,7 @@
 | SmartSqlMapConfig.xsd  | [SmartSqlMapConfig.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMapConfig.xsd) |
 | SmartSqlMap.xsd        |   [SmartSqlMap.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMap.xsd)   |
 
-## 安装 SmartSql & MySql ADO.NET 驱动
+## 安装 SmartSql & 相应的Db驱动，这里以MySql为例
 
 ``` chsarp
 Install-Package SmartSql
