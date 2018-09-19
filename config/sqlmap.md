@@ -6,18 +6,69 @@
 
 ## ResultMap
 
+``` xml
+    <ResultMap Id="UserExtendResultMap">
+      <Result Column="Data" Property="Info" TypeHandler="Json"/>
+    </ResultMap>
+```
+
 | 属性       |    说明   |
 | :--------- | --------:|
+| Id    | 唯一性编号  |
+
+### ResultMap.Result
+
+| 属性       |    说明   |
+| :--------- | --------:|
+| Column    | 列名  |
+| Property    | 属性名  |
+| TypeHandler    | 类型处理器，内置（Json/Xml）  |
 
 ## ParameterMap
 
+``` xml
+    <ParameterMap Id="UserExtendParameterMap">
+      <Parameter Property="Info" TypeHandler="Json"/>
+    </ParameterMap>
+```
+
 | 属性       |    说明   |
 | :--------- | --------:|
+| Id    | 唯一性编号  |
+
+### ParameterMap.Parameter
+
+| 属性       |    说明   |
+| :--------- | --------:|
+| Property    | 属性名  |
+| TypeHandler    | 类型处理器，内置（Json/Xml）  |
 
 ## MultipleResultMap
 
+``` xml
+    <MultipleResultMap Id="QueryByPage_Map">
+      <Result  Property="Total"/>
+      <Result  Property="List"/>
+    </MultipleResultMap>
+```
+
+``` csharp
+    public class QueryByPageResponse
+    {
+        public int Total { get; set; }
+        public IEnumerable<T_Entity> List { get; set; }
+    }
+```
+
 | 属性       |    说明   |
 | :--------- | --------:|
+| Id    | 唯一性编号  |
+
+### MultipleResultMap.Result
+
+| 属性       |    说明   |
+| :--------- | --------:|
+| Property    | 属性  |
 
 ## Statement标签
 
@@ -27,10 +78,9 @@
 | Cache    | 缓存策略编号,引用自Cache标签  |
 | CommandType    | Text/StoredProcedure , Default:Text |
 | SourceChoice    | Unknow/Write/Read , Default:Unknow  |
-| ReadDb    |   |
-| ResultMap    |   |
-| ParameterMap    |   |
-| MultipleResultMap    |   |
+| ResultMap    |  ResultMap.Id 用于结果映射，列表VS属性名映射，以及字段类型处理器处理 |
+| ParameterMap    |  ParameterMap.Id |
+| MultipleResultMap    | MultipleResultMap.Id，用于返回多结果集映射  |
 
 ## Statement 筛选子标签
 
@@ -65,54 +115,38 @@
 | Set      | 继承至Dynamic,用于Update,包裹筛选标签,匹配的第一个筛选标签前缀被忽略,并添加 Set 前缀,必须匹配至少一个子标签，否则将抛出SmartSqlException异常。|
 | Placeholder    | 占位符标签，用于替换参数键值 |
 
-### Demo
+## Cache 标签
 
-#### For
+| 属性       |    说明   |
+| :--------- | --------:|
+| Id    | 唯一性标号  |
+| Type   | Cache类型继承自ICacheProvider,内置常量:Lru 最近最少使用算法,内存缓存, Fifo 先进先出算法,其他继承自ICacheProvider缓存类型均可,例: Type="SmartSql.Cache.Redis.RedisCacheProvider,SmartSql.Cache.Redis" |
 
-> 如果数组内类型里边为（值类型 | String）, Key属性值为必选，且与For标签内键值保持一致
+### Cache 子标签
 
-``` csharp
-    var list = SqlMapper.Query<T_Test>(new RequestContext
-        {
-            Scope = "T_Test",
-            SqlId = "GetList",
-            Request = new
-            {
-                LikeNames = new string[] { "Ahoo", "Good" }
-            }
-        });
-```
+| 标签           |    说明   |
+| :---------     | --------:|
+| FlushInterval  | 定时刷新策略 |
+| FlushOnExecute | 事件触发策略 |
+| Parameter | 作为 ICacheProvider 初始化参数  |
 
-``` xml
-    <For Prepend="And" Property="LikeNames" Key="Name" Open="(" Separator="Or" Close=")">
-        Name Like Concat('%',@Name,'%')
-    </For>
-```
+### FlushInterval
 
-> 如果数组内类型里边为 !（值类型 | String）
+| 属性       |    说明   |
+| :--------- | --------:|
+| Hours    | 时  |
+| Minutes   | 分 |
+| Seconds   | 秒 |
 
-``` csharp
-    IList<T_Test> test_list = new List<T_Test> {
-        new T_Test{  Name="1", Status=1},
-        new T_Test{  Name="2", Status=2}
-    };
-    SqlMapper.Execute(new RequestContext
-        {
-            Scope = "T_Test",
-            SqlId = "InsertRange",
-            Request = new { Values = test_list }
-        });
-```
+### FlushOnExecute
 
-``` xml
-<Statement Id="InsertRange">
-    INSERT INTO T_Test
-    (Name,Status)
-    VALUES
-    <For Prepend="" Property="Values" Open="" Separator="," Close="">
-        (@Name,@Status)
-    </For>
-</Statement>
-```
+| 属性       |    说明   |
+| :--------- | --------:|
+| Statement    | 触发刷新缓存的声明  |
 
----
+### Parameter
+
+| 属性       |    说明   |
+| :--------- | --------:|
+| Key    | 键  |
+| Value    | 值  |

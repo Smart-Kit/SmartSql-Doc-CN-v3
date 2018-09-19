@@ -13,7 +13,6 @@
 
 * [SmartSqlMapConfig](config/sqlmap-config.md)
 * [SmartSqlMap](config/sqlmap.md)
-* [Cache](config/cache-tag.md)
 
 ## 动态仓储
 

@@ -16,17 +16,13 @@
     <Read Name="ReadDB-0" ConnectionString="Data Source=.;database=TestDB;uid=sa;pwd=SmartSql.net" Weight="80"/>
     <Read Name="ReadDB-1" ConnectionString="Data Source=.;database=TestDB;uid=sa;pwd=SmartSql.net" Weight="20"/>
   </Database>
-
-  <!--
   <TypeHandlers>
     <TypeHandler Name="Json" Type="SmartSql.TypeHandler.JsonTypeHandler,SmartSql.TypeHandler"/>
     <TypeHandler Name="Xml" Type="SmartSql.TypeHandler.XmlTypeHandler,SmartSql.TypeHandler"/>
   </TypeHandlers>
-  -->
   <SmartSqlMaps>
     <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
     <!--<SmartSqlMap Path="Maps/T_Table.xml"></SmartSqlMap>-->
-
   </SmartSqlMaps>
 </SmartSqlMapConfig>
 

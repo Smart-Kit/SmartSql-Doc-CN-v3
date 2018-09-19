@@ -1,154 +1,217 @@
 # 快速使用
 
-## 安装 XML Schema File 文件获得智能提示
+## ISmartSqlMapper 常用(部分)接口概述
 
-下载以下俩个文件至 Microsoft Visual Studio XSD安装目录
+| 函数           |    说明   |
+| :---------     | --------:|
+| Execute  |  IDbCommand.ExecuteNonQuery，执行返回受影响行数 |
+| ExecuteScalar  | IDbCommand.ExecuteScalar,执行并返回查询返回的ReultSet中第一行的第一列  |
+| Query  | 执行返回实体列表 |
+| QuerySingle  | 执行返回单个实体 |
+| GetDataTable  | 执行返回DataTable |
+| GetDataSet  | 执行返回DataSet |
+| BeginTransaction  | 开启事务 |
+| CommitTransaction  | 提交事务 |
+| RollbackTransaction  | 回滚事务 |
 
-``` chsarp
-VS2017目录地址：\Microsoft Visual Studio\2017\Enterprise\Xml\Schemas
-```
+## 新增
 
-| 文件      |   地址   |
-| --------  | -----:  |
-| SmartSqlMapConfig.xsd  | [SmartSqlMapConfig.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMapConfig.xsd) |
-| SmartSqlMap.xsd        |   [SmartSqlMap.xsd](https://raw.githubusercontent.com/Ahoo-Wang/SmartSql/master/doc/Schemas/SmartSqlMap.xsd)   |
-
-## 模板文件
-
-### SmartSqlMapConfig
-
-``` xml
-<?xml version="1.0" encoding="utf-8" ?>
-<SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
-  <Settings IsWatchConfigFile="true" />
-  <Database>
-    <!--ParameterPrefix:[SqlServer:@ | MySQL:? |Oracle::] -->
-    <!--<DbProvider Name="MySqlClientFactory" ParameterPrefix="?" Type="MySql.Data.MySqlClient.MySqlClientFactory,MySql.Data"/>-->
-    <!--<DbProvider Name="OracleClientFactory" ParameterPrefix=":" Type="Oracle.ManagedDataAccess.Client.OracleClientFactory,Oracle.ManagedDataAccess"/>-->
-    <!--<DbProvider Name="NpgsqlFactory" ParameterPrefix="@" Type="Npgsql.NpgsqlFactory,Npgsql"/>-->
-    <DbProvider Name="SqlClientFactory" ParameterPrefix="@" Type="System.Data.SqlClient.SqlClientFactory,System.Data.SqlClient"/>
-    <Write Name="WriteDB" ConnectionString="Data Source=.;database=TestDB;uid=sa;pwd=SmartSql.net"/>
-    <Read Name="ReadDB-0" ConnectionString="Data Source=.;database=TestDB;uid=sa;pwd=SmartSql.net" Weight="80"/>
-    <Read Name="ReadDB-1" ConnectionString="Data Source=.;database=TestDB;uid=sa;pwd=SmartSql.net" Weight="20"/>
-  </Database>
-
-  <!--
-  <TypeHandlers>
-    <TypeHandler Name="Json" Type="SmartSql.TypeHandler.JsonTypeHandler,SmartSql.TypeHandler"/>
-    <TypeHandler Name="Xml" Type="SmartSql.TypeHandler.XmlTypeHandler,SmartSql.TypeHandler"/>
-  </TypeHandlers>
-  -->
-  <SmartSqlMaps>
-    <SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>
-    <!--<SmartSqlMap Path="Maps/T_Table.xml"></SmartSqlMap>-->
-
-  </SmartSqlMaps>
-</SmartSqlMapConfig>
-
-```
-
-### SmartSqlMap
+### Statement
 
 ``` xml
-<?xml version="1.0" encoding="utf-8" ?>
-<SmartSqlMap Scope="T_Test"  xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
-  <Caches>
-    <Cache Id="T_Test.LruCache"  Type="Lru">
-      <Parameter Key="CacheSize" Value="100"/>
-      <FlushInterval Hours="0" Minutes="10" Seconds="0"/>
-      <FlushOnExecute Statement="T_Test.Insert"/>
-      <FlushOnExecute Statement="T_Test.Update"/>
-    </Cache>
-  </Caches>
-  <Statements>
-    <Statement Id="QueryParams">
-      <Where>
-        <IsNotEmpty Prepend="And" Property="Name">
-          T.Name Like Concat('%',@Name,'-%')
-        </IsNotEmpty>
-      </Where>
-    </Statement>
-    <!--新增-->
     <Statement Id="Insert">
-      INSERT INTO T_Test
-      (Name)
+      INSERT INTO T_User
+      (UserName
+      ,Password
+      ,Status
+      ,LastLoginTime
+      ,CreationTime)
       VALUES
-      (@Name)
-      ;Select Scope_Identity();
+      (?UserName
+      ,?Password
+      ,?Status
+      ,?LastLoginTime
+      ,?CreationTime)
+      ;Select Last_Insert_Id();
     </Statement>
-    <!--删除-->
-    <Statement Id="Delete">
-      Delete T_Test
-      Where Id=@Id
-    </Statement>
-    <!--更新-->
-    <Statement Id="Update">
-      UPDATE T_Test
-      SET
-      Name = @Name
-      Where Id=@Id
-    </Statement>
-    <!--获取数据列-->
-    <Statement Id="GetList" Cache="T_Test.LruCache">
-      SELECT Top 10 T.* From T_Test T With(NoLock)
-      <Include RefId="QueryParams"/>
-    </Statement>
-    <Statement Id="GetListByLruCache" Cache="T_Test.LruCache">
-      SELECT Top 10 T.* From T_Test T With(NoLock)
-      <Include RefId="QueryParams"/>
-    </Statement>
-    <!--获取分页数据-->
-    <Statement Id="GetListByPage">
-      Select TT.* From
-      (Select ROW_NUMBER() Over(Order By T.Id Desc) Row_Index,T.* From T_Test T With(NoLock)
-      <Include RefId="QueryParams"/>) TT
-      Where TT.Row_Index Between ((@PageIndex-1)*@PageSize+1) And (@PageIndex*@PageSize)
-    </Statement>
-    <!--获取记录数-->
-    <Statement Id="GetRecord">
-      Select Count(1) From T_Test T With(NoLock)
-      <Include RefId="QueryParams"/>
-    </Statement>
-    <!--获取表映射实体-->
-    <Statement Id="GetEntity" Cache="T_Test.LruCache">
-      Select Top 1 T.* From T_Test T With(NoLock)
-      <Where>
-        <IsNotEmpty Prepend="And" Property="Id">
-          T.Id=@Id
-        </IsNotEmpty>
-      </Where>
-    </Statement>
-    <!--是否存在该记录-->
-    <Statement Id="IsExist">
-      Select Count(1) From T_Test T With(NoLock)
-      <Include RefId="QueryParams"/>
-    </Statement>
-  </Statements>
-</SmartSqlMap>
 ```
 
-## 代码
-
-### 查询
+### 返回主键
 
 ``` csharp
+
             ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
-            SqlMapper.Query<T_Test>(new RequestContext
+            long userId = _smartSqlMapper.ExecuteScalar<long>(new RequestContext
             {
-                Scope = "T_Test",
-                SqlId = "GetList",
-                Request = new { Name = "SmartSql" }
+                Scope = "User",
+                SqlId = "Insert",
+                Request = new User
+                {
+                    UserName = request.UserName,
+                    Pwd = request.Pwd,
+                    Status = Entitiy.UserStatus.Ok,
+                    CreationTime = DateTime.Now,
+                }
             });
 ```
 
-### 事务
+### 新增返回受影响行数
+
+``` csharp
+            SqlMapper.Execute(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "Insert",
+                Request = new User
+                {
+                    UserName = request.UserName,
+                    Pwd = request.Pwd,
+                    Status = Entitiy.UserStatus.Ok,
+                    CreationTime = DateTime.Now,
+                }
+            });
+```
+
+## 删除
+
+``` xml
+    <Statement Id="Delete">
+      Delete FROM  T_User
+      Where Id=?Id
+    </Statement>
+```
+
+``` csharp
+            SqlMapper.Execute(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "Delete",
+                Request = new { Id = 3 }
+            });
+```
+
+## 更新
+
+### Statement.Update
+
+``` xml
+<Statement Id="Update">
+      UPDATE T_User
+      <Set>
+        <IsProperty Prepend="," Property="UserName">
+          UserName = ?UserName
+        </IsProperty>
+        <IsProperty Prepend="," Property="Password">
+          Password = ?Password
+        </IsProperty>
+        <IsProperty Prepend="," Property="Status">
+          Status = ?Status
+        </IsProperty>
+        <IsProperty Prepend="," Property="LastLoginTime">
+          LastLoginTime = ?LastLoginTime
+        </IsProperty>
+        <IsProperty Prepend="," Property="CreationTime">
+          CreationTime = ?CreationTime
+        </IsProperty>
+      </Set>
+      Where Id=?Id
+    </Statement>
+```
+
+### 全量更新
+
+``` csharp
+            SqlMapper.Execute(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "Update",
+                Request = new User
+                {
+                    Id=1,
+                    UserName = request.UserName,
+                    Pwd = request.Pwd,
+                    Status = Entitiy.UserStatus.Ok,
+                    CreationTime = DateTime.Now,
+                }
+            });
+```
+
+### 局部更新
+
+``` csharp
+            SqlMapper.Execute(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "Update",
+                Request = new { Id=1 , Pwd = "SmartSql" }
+            });
+```
+
+## 查询 返回List
+
+``` xml
+<Statement Id="Query">
+      SELECT T.* From T_User T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="EqUserName">
+          T.UserName=$EqUserName
+        </IsNotEmpty>
+        <IsNotEmpty Prepend="And" Property="UserName">
+          T.UserName Like Concat('%',$UserName,'%')
+        </IsNotEmpty>
+      </Where>
+      <Switch Prepend="Order By" Property="OrderBy">
+        <Default>
+          T.Id Desc
+        </Default>
+      </Switch>
+      <IsNotEmpty Prepend="Limit" Property="Taken">?Taken</IsNotEmpty>
+    </Statement>
+```
+
+``` csharp
+            var list = SqlMapper.Query<User>(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "Query",
+                Request = new
+                {
+                    Taken = 10
+                }
+            });
+
+```
+
+## 查询 返回单个实体
+
+``` xml
+    <Statement Id="GetEntity">
+      Select T.* From T_User T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="Id">
+          T.Id=?Id
+        </IsNotEmpty>
+      </Where>
+      Limit 1
+    </Statement>
+```
+
+``` csharp
+            var user = SqlMapper.QuerySingle<User>(new RequestContext
+            {
+                Scope = "User",
+                SqlId = "GetEntity",
+                Request = new { Id = 1 }
+            });
+```
+
+## 事务
 
 ``` csharp
             try
             {
-                ISmartSqlMapper SqlMapper = MapperContainer.Instance.GetSqlMapper();
                 SqlMapper.BeginTransaction();
-                //Do Biz
+                //BizCode();
                 SqlMapper.CommitTransaction();
             }
             catch (Exception ex)
@@ -156,4 +219,24 @@ VS2017目录地址：\Microsoft Visual Studio\2017\Enterprise\Xml\Schemas
                 SqlMapper.RollbackTransaction();
                 throw ex;
             }
+```
+
+## 存储过程
+
+``` csharp
+            DbParameterCollection dbParameterCollection = new DbParameterCollection();
+            dbParameterCollection.Add(new DbParameter
+            {
+                Name = "Total",
+                DbType = System.Data.DbType.Int32,
+                Direction = System.Data.ParameterDirection.Output
+            });
+            RequestContext context = new RequestContext
+            {
+                CommandType = System.Data.CommandType.StoredProcedure,
+                RealSql = "SP_QueryByPage",
+                Request = dbParameterCollection
+            };
+            var list = SqlMapper.Query<User>(context);
+            var total = dbParameterCollection.GetValue<int>("Total");
 ```
