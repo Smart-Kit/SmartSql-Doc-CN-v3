@@ -7,7 +7,7 @@ SmartSql 希望 开发人员更多的接触 Sql ,获得绝对的控制权与安�
 
 > **Codefirst 一个美好，却不切实际的想法。**
 
-## 对SmartSql很感兴趣，不只从何开始？
+## 对SmartSql很感兴趣，不知从何开始？
 
 请阅读示例项目：<https://github.com/Ahoo-Wang/SmartSql-Starter>
 

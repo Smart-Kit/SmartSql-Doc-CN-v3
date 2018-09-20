@@ -86,6 +86,14 @@
         /// 可选，当不使用 SmartSqlMap.Statement 时可直接定义 Sql
         /// </summary>
         public string Sql { get; set; }
+        /// <summary>
+        /// 命令类型
+        /// </summary>
+        public CommandType CommandType { get; set; } = CommandType.Text;
+        /// <summary>
+        /// 数据源
+        /// </summary>
+        public DataSourceChoice SourceChoice { get; set; } = DataSourceChoice.Unknow;
     }
 ```
 
@@ -122,7 +130,15 @@
         /// <summary>
         /// 返回DataSet
         /// </summary>
-        GetDataSet = 6
+        GetDataSet = 6，
+        /// <summary>
+        /// 返回 ValueTuple
+        /// </summary>
+        FillMultiple = 7,
+        /// <summary>
+        /// 返回嵌套实体
+        /// </summary>
+        GetNested = 8
     }
 ```
 
