@@ -11,7 +11,7 @@
         }
     },
     "plugins": [
-        "prism", "prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga"
+        "prism", "prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga","sitemap"
     ],
     "pluginsConfig": {
         "prism": {
@@ -66,6 +66,9 @@
         },
         "ga": {
             "token": "UA-122662513-1"
+        },
+        "sitemap": {
+            "hostname": "https://doc.smartsql.net/"
         }
     }
 }
