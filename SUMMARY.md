@@ -21,8 +21,8 @@
 
 ## 最佳实践
 
+* [SmartCode-代码生成器](https://github.com/Ahoo-Wang/SmartCode)
 * [Asp.Net Core](best-practice/aspnetcore.md)
-* [代码生成器-动软](best-practice/code-generator-codematic.md)
 
 ## 插件
 
