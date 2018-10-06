@@ -7,11 +7,12 @@
     "language": "zh-hans",
     "links": {
         "sidebar": {
-            "SmartSql-GitHub": "https://github.com/Ahoo-Wang/SmartSql"
+            "SmartSql-GitHub": "https://github.com/Ahoo-Wang/SmartSql",
+            "SmartSql-Doc-En": "https://doc-en.smartsql.net/"
         }
     },
     "plugins": [
-        "prism", "prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga","sitemap"
+        "prism", "prism-themes", "-highlight", "github", "github-buttons", "anchor-navigation-ex", "copy-code-button", "rss", "favicon", "ga", "sitemap"
     ],
     "pluginsConfig": {
         "prism": {
