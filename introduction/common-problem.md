@@ -34,7 +34,7 @@ SmartSql 已历经1年多的线上数十个微服务场景验证，其性能、�
 
 ## 对于简单CURD配置
 
-SmartSql 提供了常规Sql操作的模板,开发人员可以直接通过模板生成Xml配置文档.
+作者还开源了一个代码生成器项目：SmartCode: <https://github.com/Ahoo-Wang/SmartCode> ,可以使用SmartCode生成解决方案，包括所有CURD操作的XML/Entity/IRepository!
 
 ## 为什么选择Xml作为配置语法
 
