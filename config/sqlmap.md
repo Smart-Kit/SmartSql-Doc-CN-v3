@@ -93,7 +93,7 @@
 | IsGreaterThan  | 参数大于比较值        |
 | IsLessEqual    | 参数小于等于比较值    |
 | IsLessThan     | 参数小于比较值        |
-| IsNotEmpty     | !(null or 空字符串 or 空IEnumerable)         |
+| IsNotEmpty     | !(null or 空字符串 or 空IEnumerable) |
 | IsNotEqual     | 参数不等于比较值    |
 | IsNotNull      | 参数不等于 null  |
 | IsNull         | 参数等于 null    |
@@ -114,6 +114,95 @@
 | Where      | 继承至Dynamic,用于包裹筛选标签,匹配的第一个筛选标签前缀被忽略,并添加 Where 前缀|
 | Set      | 继承至Dynamic,用于Update,包裹筛选标签,匹配的第一个筛选标签前缀被忽略,并添加 Set 前缀,必须匹配至少一个子标签，否则将抛出SmartSqlException异常。|
 | Placeholder    | 占位符标签，用于替换参数键值 |
+
+### Include 标签
+
+| 属性       |    说明   |
+| :--------- | --------:|
+| RefId        | 需要引入的StatmentId |
+
+### Include 标签
+
+``` xml
+    <Statement Id="CommonQueryParams">
+        WHERE Id = @Id
+    </Statement>
+    <Statement Id="Query">
+        SELECT * FROM T_Test
+        <Include RefId="CommonQueryParams" />
+    </Statement>    
+```
+
+### For 标签
+
+| 属性      |    说明   |
+| :---------| --------:|
+| Open      | 循环开始时注入的值 |
+| Close     | 循环结束时注入的值 |
+| Separator | 每次循环间隔时注入的值 |
+| Key       | 当前循环下的对象 |
+
+
+#### Example 值类型数组
+
+``` csharp
+    public class RequestParam
+    {
+        public IEnumerable<long> List { get; set; }
+    }
+
+    List = [1,2,3]
+```
+
+``` xml
+    <Statement Id="Query">
+        SELECT * FROM T_Test
+        WHERE Id IN
+        <For Open="(" Close=")" Key="Item" Prepend="AND" Property="List" Separator=",">
+            @Item
+        </For>
+    </Statement>    
+```
+
+``` sql
+    SELECT * FROM T_Test
+    WHERE Id IN
+    (1,2,3)
+```
+
+#### Example 对象数组
+
+``` csharp
+    public class T_User
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class RequestParam
+    {
+        public IEnumerable<T_User> List { get; set; }
+    }
+
+    List = [{ Id = 1, Name = "Ahoo" },{ Id = 2, Name = "Noah" }]
+```
+
+``` xml
+    <Statement Id="Query">
+        INSERT INTO T_User
+        (Id
+        ,Name)
+        VALUES
+        <For Open="" Close="" Key="Item" Prepend="" Property="List" Separator=",">
+            (@Id
+            ,@Name)
+        </For>        
+    </Statement>    
+```
+
+``` sql
+    INSERT INTO T_User (Id,Name)
+    VALUES (1,Ahoo),(2,Noah)
+```
 
 ## Cache 标签
 
