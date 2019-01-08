@@ -121,8 +121,6 @@
 | :--------- | --------:|
 | RefId        | 需要引入的StatmentId |
 
-### Include 标签
-
 ``` xml
     <Statement Id="CommonQueryParams">
         WHERE Id = @Id
@@ -131,6 +129,12 @@
         SELECT * FROM T_Test
         <Include RefId="CommonQueryParams" />
     </Statement>    
+```
+
+``` sql
+    SELECT * FROM T_Test
+    WHERE Id = 1
+
 ```
 
 ### For 标签
